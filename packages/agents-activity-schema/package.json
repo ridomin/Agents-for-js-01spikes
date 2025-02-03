@@ -28,7 +28,6 @@
   "license": "MIT",
   "files": [
     "README.md",
-    "LICENSE.md",
     "dist/src/*",
     "src/*"
   ],
