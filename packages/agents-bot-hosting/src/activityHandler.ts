@@ -1,4 +1,7 @@
-/** * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. */
+/**
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License.
+ */
 import { debug } from './logger'
 import { TurnContext } from './turnContext'
 import { Activity, ActivityTypes, Channels } from '@microsoft/agents-activity-schema'
@@ -393,14 +396,16 @@ export class ActivityHandler {
     await this.defaultNextEvent(context)()
   }
 
-  /** * Returns the default next event handler. */
+  /**
+   * Returns the default next event handler.
+   */
   protected defaultNextEvent (context: TurnContext): () => Promise<void> {
-    const runDialogs = async (): Promise<void> => {
-      await this.handle(context, 'Dialog', async () => {
+    const defaultHandler = async (): Promise<void> => {
+      await this.handle(context, 'Default', async () => {
         // noop
       })
     }
-    return runDialogs
+    return defaultHandler
   }
 
   /** * Registers a handler for a specific activity type. */
