@@ -5,6 +5,9 @@
         "path": "packages/agents-activity-schema"
       },
       {
+        "path": "packages/agents-bot-hosting"
+      },
+      {
         "path": "packages/agents-copilotstudio-client"
       }
     ]
