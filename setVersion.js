@@ -17,9 +17,9 @@ const upddateLocalDeps = (folder, version) => {
   })
 }
 
-const setPackageVersionAndBuildNumber = versionInfo => {
+const setPackageVersionAndBuildNumber = async versionInfo => {
   console.log('##vso[task.setvariable variable=CUSTOM_VERSION;]' + versionInfo.npmPackageVersion)
-
+  await nbgv.setPackageVersion('.')
   fs.readdir('packages', { withFileTypes: true }, (err, files) => {
     if (err) {
       console.error('Failed to read the packages directory: ' + err)
