@@ -1,5 +1,4 @@
 export * from './adaptiveCardAuthentication'
-export * from './adaptiveCardInvokeAction'
 export * from './adaptiveCardInvokeResponse'
 export * from './adaptiveCardInvokeValue'
 export * from './invokeException'

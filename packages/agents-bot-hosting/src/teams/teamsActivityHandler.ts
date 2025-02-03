@@ -8,7 +8,7 @@ import { ConnectorClient } from '../connector-client/connectorClient'
 import { TurnContext } from '../turnContext'
 import { ReadReceiptInfo } from './readReceipInfo'
 import * as z from 'zod'
-import { ChannelInfo, Channels, TeamInfo } from '@microsoft/agents-activity-schema'
+import { ChannelInfo, Channels, MessagingExtensionQuery, TeamInfo, validateValueMessagingExtensionQuery } from '@microsoft/agents-activity-schema'
 import { FileConsentCardResponse } from './file/fileConsentCardResponse'
 import { TaskModuleRequest } from './task/taskModuleRequest'
 import { TabRequest } from './tab/tabRequest'
@@ -24,7 +24,6 @@ import { O365ConnectorCardActionQuery } from './query/o365ConnectorCardActionQue
 import { AppBasedLinkQuery } from './query/appBasedLinkQuery'
 import { SigninStateVerificationQuery } from './query/signinStateVerificationQuery'
 import { ConfigResponse } from './bot-config/configResponse'
-import { MessagingExtensionQuery } from './messaging-extension/messagingExtensionQuery'
 import { MessagingExtensionAction } from './messaging-extension/messagingExtensionAction'
 import { MessagingExtensionResponse } from './messaging-extension/messagingExtensionResponse'
 import { MessagingExtensionActionResponse } from './messaging-extension/messagingExtensionActionResponse'
@@ -85,7 +84,7 @@ export class TeamsActivityHandler extends ActivityHandler {
 
           case 'composeExtension/query':
             return ActivityHandler.createInvokeResponse(
-              await this.handleTeamsMessagingExtensionQuery(context, context.activity.value as MessagingExtensionQuery)
+              await this.handleTeamsMessagingExtensionQuery(context, validateValueMessagingExtensionQuery(context.activity.value))
             )
 
           case 'composeExtension/selectItem':

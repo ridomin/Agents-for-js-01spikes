@@ -3,8 +3,8 @@
  * Licensed under the MIT License.
  */
 
+import { AdaptiveCardInvokeAction } from '@microsoft/agents-activity-schema'
 import { AdaptiveCardAuthentication } from './adaptiveCardAuthentication'
-import { AdaptiveCardInvokeAction } from './adaptiveCardInvokeAction'
 
 export interface AdaptiveCardInvokeValue {
   action: AdaptiveCardInvokeAction
