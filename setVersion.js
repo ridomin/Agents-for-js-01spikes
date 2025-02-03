@@ -26,8 +26,8 @@ const setPackageVersionAndBuildNumber = versionInfo => {
     const folders = files
       .filter(file => file.isDirectory())
       .map(folder => `${folder.parentPath}/${folder.name}`)
-    folders.forEach(f => {
-      nbgv.setPackageVersion(f)
+    folders.forEach(async f => {
+      await nbgv.setPackageVersion(f)
       upddateLocalDeps(f, versionInfo.npmPackageVersion)
     })
   })
