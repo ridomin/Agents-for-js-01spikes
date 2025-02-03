@@ -9,6 +9,12 @@
       },
       {
         "path": "packages/agents-copilotstudio-client"
+      },
+      {
+        "path": "packages/agents-bot-hosting-storage-blob"
+      },
+      {
+        "path": "packages/agents-bot-hosting-storage-cosmos"
       }
     ]
   }
