@@ -6,6 +6,7 @@ import { SigningResource } from './signingResource'
 import { TokenExchangeRequest } from './tokenExchangeRequest'
 import { Activity } from '@microsoft/agents-activity-schema'
 import { debug } from '../logger'
+import { jwtDecode, JwtPayload } from 'jwt-decode'
 
 const logger = debug('agents:userTokenClient')
 
@@ -23,11 +24,19 @@ export class UserTokenClient {
     this.client = axiosInstance
   }
 
-  async getUserToken (connectionName: string, channelId: string, userId: string, code?: string) {
+  async getUserToken (connectionName: string, channelId: string, userId: string, code?: string): Promise<{
+    token: any
+    expiration: number | undefined
+  } | null> {
     try {
       const params = { connectionName, channelId, userId, code }
       const response = await this.client.get('/api/usertoken/GetToken', { params })
-      return response.data
+
+      const decoded: JwtPayload = jwtDecode(response.data.token)
+      return {
+        token: response.data.token,
+        expiration: decoded?.exp ? decoded.exp * 1000 : undefined
+      }
     } catch (error: any) {
       if (error.response?.status !== 404) {
         logger.error(error)
