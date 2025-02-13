@@ -4,13 +4,18 @@
 import express, { Response } from 'express'
 
 import rateLimit from 'express-rate-limit'
-import { Request, CloudAdapter, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv } from '@microsoft/agents-bot-hosting'
+import { Request, CloudAdapter, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv, TranscriptLoggerMiddleware } from '@microsoft/agents-bot-hosting'
+import { BlobsTranscriptStore } from '@microsoft/agents-bot-hosting-storage-blob'
 import { EchoBot } from './bot'
 
 const authConfig: AuthConfiguration = loadAuthConfigFromEnv()
 
 const adapter = new CloudAdapter(authConfig)
 const myBot = new EchoBot()
+//what can TranscriptLoggerMiddleware receive? anything that implements either a TranscriptLogger or a TranscriptStore.
+//eg. these two work:
+//adapter.use(new TranscriptLoggerMiddleware(new ConsoleTranscriptLogger()))
+adapter.use(new TranscriptLoggerMiddleware(new BlobsTranscriptStore(process.env.BLOB_STORAGE_CONNECTION_STRING!, process.env.BLOB_CONTAINER_ID!)))
 
 const app = express()
 
