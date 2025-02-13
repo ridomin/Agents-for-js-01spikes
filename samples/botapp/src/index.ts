@@ -4,14 +4,14 @@
 import express, { Response } from 'express'
 
 import rateLimit from 'express-rate-limit'
-import { Request, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv, TurnState, MemoryStorage, Application, TurnContext, CloudAdapter } from '@microsoft/agents-bot-hosting'
+import { Request, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv, TurnState, MemoryStorage, Application, TurnContext, CloudAdapter }
+  from '@microsoft/agents-bot-hosting'
+import { version } from '@microsoft/agents-bot-hosting/package.json'
 import { ActivityTypes } from '@microsoft/agents-bot-activity'
-// import { EchoBot } from './bot'
 
 const authConfig: AuthConfiguration = loadAuthConfigFromEnv()
 
 const adapter = new CloudAdapter(authConfig)
-// const myBot = new EchoBot()
 
 const server = express()
 
@@ -37,6 +37,24 @@ app.message('/reset', async (context: TurnContext, state: ApplicationTurnState) 
 app.message('/count', async (context: TurnContext, state: ApplicationTurnState) => {
   const count = state.conversation.count ?? 0
   await context.sendActivity(`The count is ${count}`)
+})
+
+app.message('/diag', async (context: TurnContext, state: ApplicationTurnState) => {
+  await state.load(context, storage)
+  await context.sendActivity(JSON.stringify(context.activity))
+})
+
+app.message('/state', async (context: TurnContext, state: ApplicationTurnState) => {
+  await state.load(context, storage)
+  await context.sendActivity(JSON.stringify(state))
+})
+
+app.message('/runtime', async (context: TurnContext, state: ApplicationTurnState) => {
+  const runtime = {
+    nodeversion: process.version,
+    sdkversion: version
+  }
+  await context.sendActivity(JSON.stringify(runtime))
 })
 
 app.conversationUpdate('membersAdded', async (context: TurnContext, state: ApplicationTurnState) => {
