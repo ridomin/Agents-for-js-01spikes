@@ -3,14 +3,11 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { AuthConfiguration } from '../auth/authConfiguration'
 import { AuthProvider } from '../auth/authProvider'
 import { debug } from '../logger'
-import { Activity, ChannelAccount } from '@microsoft/agents-bot-activity'
+import { Activity } from '@microsoft/agents-bot-activity'
 import { ConversationsResult } from './conversationsResult'
 import { ConversationParameters } from './conversationParameters'
 import { ConversationResourceResponse } from './conversationResourceResponse'
 import { ResourceResponse } from './resourceResponse'
-import { BatchOperationStateResponse } from './batchOperationStateResponse'
-import { BatchFailedEntriesResponse } from './batchFailedEntriesResponse'
-import { CancelOperationResponse } from './cancelOperationResponse'
 import { AttachmentInfo } from './attachmentInfo'
 import { AttachmentData } from './attachmentData'
 
@@ -95,24 +92,6 @@ export class ConnectorClient {
       params: continuationToken ? { continuationToken } : undefined
     }
     const response = await this.client(config)
-    return response.data
-  }
-
-  /**
-   * Retrieves a conversation member by conversation ID and user ID.
-   * @param conversationId - The ID of the conversation.
-   * @param userId - The ID of the user.
-   * @returns The conversation member.
-   */
-  public async getConversationMember (conversationId: string, userId: string): Promise<ChannelAccount> {
-    const config: AxiosRequestConfig = {
-      method: 'get',
-      url: `/v3/conversations/${conversationId}/members/${userId}`,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }
-    const response: AxiosResponse = await this.client(config)
     return response.data
   }
 
