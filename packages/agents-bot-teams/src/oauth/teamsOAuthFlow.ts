@@ -2,15 +2,17 @@
 // Licensed under the MIT License.
 
 import { Activity, ActivityTypes, Attachment } from '@microsoft/agents-bot-activity'
-import { SigningResource } from './signingResource'
+import {
+  SigningResource,
+  CloudAdapter,
+  CardFactory,
+  BotStatePropertyAccessor,
+  UserState,
+  TurnContext,
+  MessageFactory
+} from '@microsoft/agents-bot-hosting'
+import { TeamsUserTokenClient } from './teamsUserTokenClient'
 import { TokenExchangeRequest } from './tokenExchangeRequest'
-import { UserTokenClient } from './userTokenClient'
-import { CloudAdapter } from '../cloudAdapter'
-import { CardFactory } from '../cards/cardFactory'
-import { BotStatePropertyAccessor } from '../state/botStatePropertyAccesor'
-import { UserState } from '../state/userState'
-import { TurnContext } from '../turnContext'
-import { MessageFactory } from '../messageFactory'
 
 class FlowState {
   public flowStarted: boolean = false
@@ -18,7 +20,7 @@ class FlowState {
 }
 
 export class TeamsOAuthFlow {
-  userTokenClient?: UserTokenClient
+  userTokenClient?: TeamsUserTokenClient
   state: FlowState | null
   flowStateAccessor: BotStatePropertyAccessor<FlowState | null>
   tokenExchangeId: string | null = null
@@ -38,7 +40,7 @@ export class TeamsOAuthFlow {
     const authConfig = context.adapter.authConfig
     const scope = 'https://api.botframework.com'
     const accessToken = await adapter.authProvider.getAccessToken(authConfig, scope)
-    this.userTokenClient = new UserTokenClient(accessToken)
+    this.userTokenClient = new TeamsUserTokenClient(accessToken)
     const retVal: string = ''
     await context.sendActivities([MessageFactory.text('authorizing user'), new Activity(ActivityTypes.Typing)])
     const signingResource: SigningResource = await this.userTokenClient.getSignInResource(authConfig.clientId!, authConfig.connectionName!, context.activity)
