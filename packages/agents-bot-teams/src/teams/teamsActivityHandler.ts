@@ -3,9 +3,6 @@
  * Licensed under the MIT License.
  */
 
-import { ActivityHandler } from '../activityHandler'
-import { ConnectorClient } from '../connector-client/connectorClient'
-import { TurnContext } from '../turnContext'
 import { ReadReceiptInfo } from './readReceipInfo'
 import * as z from 'zod'
 import { ChannelInfo, Channels, MessagingExtensionQuery, TeamInfo, validateValueMessagingExtensionQuery } from '@microsoft/agents-bot-activity'
@@ -27,7 +24,7 @@ import { ConfigResponse } from './bot-config/configResponse'
 import { MessagingExtensionAction } from './messaging-extension/messagingExtensionAction'
 import { MessagingExtensionResponse } from './messaging-extension/messagingExtensionResponse'
 import { MessagingExtensionActionResponse } from './messaging-extension/messagingExtensionActionResponse'
-import { InvokeResponse } from '../invoke/invokeResponse'
+import { ActivityHandler, ConnectorClient, InvokeResponse, TurnContext } from '@microsoft/agents-bot-hosting'
 
 const TeamsMeetingStartT = z
   .object({

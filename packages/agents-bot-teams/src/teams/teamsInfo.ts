@@ -3,12 +3,8 @@
  * Licensed under the MIT License.
  */
 
-import { TurnContext } from '../turnContext'
 import { Activity, Channels, ConversationReference, ChannelInfo } from '@microsoft/agents-bot-activity'
-import { CloudAdapter } from '../cloudAdapter'
-import { ConversationParameters } from '../connector-client/conversationParameters'
 import { TeamsChannelAccount } from '../connector-client/teamsChannelAccount'
-import { ConnectorClient } from '../connector-client/connectorClient'
 import { TeamsMeetingParticipant } from './meeting/teamsMeetingParticipant'
 import { MeetingInfo } from '../connector-client/meetingInfo'
 import { TeamDetails } from '../connector-client/teamDetails'
@@ -20,6 +16,7 @@ import { TeamsMember } from '../connector-client/teamsMember'
 import { BatchOperationStateResponse } from '../connector-client/batchOperationStateResponse'
 import { BatchFailedEntriesResponse } from '../connector-client/batchFailedEntriesResponse'
 import { CancelOperationResponse } from '../connector-client/cancelOperationResponse'
+import { CloudAdapter, ConnectorClient, ConversationParameters, TurnContext } from '@microsoft/agents-bot-hosting'
 
 export class TeamsInfo {
   static async getMeetingParticipant (
