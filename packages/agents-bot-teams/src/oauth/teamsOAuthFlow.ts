@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Activity, ActivityTypes, Attachment } from '@microsoft/agents-bot-activity'
 import {
+  Activity, ActivityTypes, Attachment,
   SigningResource,
   CloudAdapter,
   CardFactory,

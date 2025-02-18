@@ -1,7 +1,6 @@
 /** * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. */
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { Activity, ChannelAccount, ChannelInfo, TeamsChannelData } from '@microsoft/agents-bot-activity'
-import { AuthConfiguration, AuthProvider, debug } from '@microsoft/agents-bot-hosting'
+import { AuthConfiguration, AuthProvider, debug, Activity, ChannelAccount, ChannelInfo, TeamsChannelData } from '@microsoft/agents-bot-hosting'
 import { TeamsChannelAccount } from './teamsChannelAccount'
 import { TeamsPagedMembersResult } from './teamsPagedMembersResult'
 import { TeamDetails } from './teamDetails'

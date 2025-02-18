@@ -5,7 +5,6 @@
 
 import { ReadReceiptInfo } from './readReceipInfo'
 import * as z from 'zod'
-import { ChannelInfo, Channels, MessagingExtensionQuery, TeamInfo, validateValueMessagingExtensionQuery } from '@microsoft/agents-bot-activity'
 import { FileConsentCardResponse } from './file/fileConsentCardResponse'
 import { TaskModuleRequest } from './task/taskModuleRequest'
 import { TabRequest } from './tab/tabRequest'
@@ -24,7 +23,7 @@ import { ConfigResponse } from './bot-config/configResponse'
 import { MessagingExtensionAction } from './messaging-extension/messagingExtensionAction'
 import { MessagingExtensionResponse } from './messaging-extension/messagingExtensionResponse'
 import { MessagingExtensionActionResponse } from './messaging-extension/messagingExtensionActionResponse'
-import { ActivityHandler, ConnectorClient, InvokeResponse, TurnContext } from '@microsoft/agents-bot-hosting'
+import { ChannelInfo, Channels, MessagingExtensionQuery, TeamInfo, validateValueMessagingExtensionQuery, ActivityHandler, ConnectorClient, InvokeResponse, TurnContext } from '@microsoft/agents-bot-hosting'
 
 const TeamsMeetingStartT = z
   .object({
