@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@microsoft/agents-bot-activity",
-  "version": "0.1.0",
+  "version": "0.1.15",
   "homepage": "https://github.com/microsoft/Agents-for-js",
   "repository": {
     "type": "git",
@@ -18,7 +18,7 @@
     "bot"
   ],
   "main": "dist/src/index.js",
-  "types" : "dist/src/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "dependencies": {
     "uuid": "^11.0.5",
     "zod": "^3.24.2"
@@ -36,7 +36,7 @@
     ".": {
       "import": "./dist/src/index.js",
       "require": "./dist/src/index.js"
-    },  
+    },
     "./package.json": "./package.json"
   }
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@microsoft/agents-bot-hosting-storage-blob",
-  "version": "0.1.0",
+  "version": "0.1.15",
   "homepage": "https://github.com/microsoft/Agents-for-js",
   "repository": {
     "type": "git",
@@ -14,13 +14,12 @@
   },
   "description": "Microsoft 365 Agents SDK State Blob Storage support.",
   "main": "dist/index.js",
-  "types" : "dist/src/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "dependencies": {
     "@azure/storage-blob": "^12.26.0",
-    "@microsoft/agents-bot-hosting": "file:../../packages/agents-bot-hosting"
+    "@microsoft/agents-bot-hosting": "0.1.15"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "license": "MIT",
   "files": [
     "README.md",
