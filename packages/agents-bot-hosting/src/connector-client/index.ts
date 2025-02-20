@@ -1,6 +1,7 @@
 export * from './attachmentData'
 export * from './attachmentInfo'
 export * from './attachmentView'
+export * from './connectorClient'
 export * from './conversationMembers'
 export * from './conversationParameters'
 export * from './conversationResourceResponse'

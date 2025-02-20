@@ -17,13 +17,13 @@ const logger = debug('agents:rest-client')
  * ConnectorClient is a client for interacting with the Microsoft Teams Connector API.
  */
 export class ConnectorClient {
-  private readonly client: AxiosInstance
+  protected readonly client: AxiosInstance
 
   /**
    * Private constructor for the ConnectorClient.
    * @param client - The AxiosInstance to use for HTTP requests.
    */
-  private constructor (client: AxiosInstance) {
+  protected constructor (client: AxiosInstance) {
     this.client = client
     this.client.interceptors.response.use(
       (config) => {

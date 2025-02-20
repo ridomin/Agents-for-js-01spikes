@@ -15,7 +15,8 @@ import { TeamsMember } from '../connector-client/teamsMember'
 import { BatchOperationStateResponse } from '../connector-client/batchOperationStateResponse'
 import { BatchFailedEntriesResponse } from '../connector-client/batchFailedEntriesResponse'
 import { CancelOperationResponse } from '../connector-client/cancelOperationResponse'
-import { Activity, Channels, ConversationReference, ChannelInfo, CloudAdapter, ConnectorClient, ConversationParameters, TurnContext } from '@microsoft/agents-bot-hosting'
+import { Activity, Channels, ConversationReference, ChannelInfo, CloudAdapter, ConversationParameters, TurnContext } from '@microsoft/agents-bot-hosting'
+import { TeamsConnectorClient } from '../connector-client/teamsConnectorClient'
 
 export class TeamsInfo {
   static async getMeetingParticipant (
@@ -284,7 +285,7 @@ export class TeamsInfo {
     return await this.getRestClient(context).getConversationMember(conversationId, userId)
   }
 
-  private static getRestClient (context: TurnContext) : ConnectorClient {
+  private static getRestClient (context: TurnContext) : TeamsConnectorClient {
     return context.turnState.get('connectorClient')
   }
 }

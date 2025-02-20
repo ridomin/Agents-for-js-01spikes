@@ -1,6 +1,6 @@
 /** * Copyright (c) Microsoft Corporation. All rights reserved. * Licensed under the MIT License. */
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { AuthConfiguration, AuthProvider, debug, Activity, ChannelAccount, ChannelInfo, TeamsChannelData } from '@microsoft/agents-bot-hosting'
+import { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { Activity, ChannelAccount, ChannelInfo, TeamsChannelData, ConnectorClient } from '@microsoft/agents-bot-hosting'
 import { TeamsChannelAccount } from './teamsChannelAccount'
 import { TeamsPagedMembersResult } from './teamsPagedMembersResult'
 import { TeamDetails } from './teamDetails'
@@ -13,60 +13,7 @@ import { BatchOperationStateResponse } from './batchOperationStateResponse'
 import { BatchFailedEntriesResponse } from './batchFailedEntriesResponse'
 import { CancelOperationResponse } from './cancelOperationResponse'
 
-const logger = debug('agents:rest-client')
-
-export class TeamsConnectorClient {
-  private readonly client: AxiosInstance
-
-  private constructor (client: AxiosInstance) {
-    this.client = client
-    this.client.interceptors.response.use(
-      (config) => {
-        const { status, statusText, config: requestConfig } = config
-        logger.info('Response: ', {
-          status,
-          statusText,
-          data: config.config.data,
-          url: requestConfig?.url,
-          method: requestConfig?.method,
-        })
-        return config
-      },
-      (error) => {
-        const { code, message, stack } = error
-        const errorDetails = {
-          code,
-          url: error.config.url,
-          method: error.config.method,
-          data: error.config.data,
-          message,
-          stack,
-        }
-        return Promise.reject(errorDetails)
-      }
-    )
-  }
-
-  static async createClientWithAuthAsync (
-    baseURL: string,
-    authConfig: AuthConfiguration,
-    authProvider: AuthProvider,
-    scope: string
-  ): Promise<TeamsConnectorClient> {
-    const axiosInstance = axios.create({
-      baseURL,
-      headers: {
-        Accept: 'application/json'
-      }
-    })
-
-    const token = await authProvider.getAccessToken(authConfig, scope)
-    if (token.length > 1) {
-      axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`
-    }
-    return new TeamsConnectorClient(axiosInstance)
-  }
-
+export class TeamsConnectorClient extends ConnectorClient {
   static async getMember (activity: Activity, userId: string): Promise<TeamsChannelAccount> {
     const teamsChannelData = activity.channelData as TeamsChannelData
     const teamId = teamsChannelData.team?.id
