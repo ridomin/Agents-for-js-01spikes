@@ -11,7 +11,7 @@ import { ResourceResponse } from './resourceResponse'
 import { AttachmentInfo } from './attachmentInfo'
 import { AttachmentData } from './attachmentData'
 
-const logger = debug('agents:rest-client')
+const logger = debug('agents:connector-client')
 
 /**
  * ConnectorClient is a client for interacting with the Microsoft Teams Connector API.
@@ -28,7 +28,7 @@ export class ConnectorClient {
     this.client.interceptors.response.use(
       (config) => {
         const { status, statusText, config: requestConfig } = config
-        logger.info('Response: ', {
+        logger.debug('Response: ', {
           status,
           statusText,
           data: config.config.data,
@@ -137,6 +137,7 @@ export class ConnectorClient {
       data: body
     }
     const response = await this.client(config)
+    logger.info('Reply to conversation/activity: ', response.data.id!, activityId)
     return response.data
   }
 
