@@ -14,7 +14,7 @@ import { AttachmentData } from './attachmentData'
 const logger = debug('agents:connector-client')
 
 /**
- * ConnectorClient is a client for interacting with the Microsoft Teams Connector API.
+ * ConnectorClient is a client for interacting with the Microsoft Connector API.
  */
 export class ConnectorClient {
   protected readonly client: AxiosInstance
