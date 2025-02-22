@@ -1,25 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+// import {
+//   CardFactory,
+//   CardImage,
+//   HeroCard,
+//   ThumbnailCard
+// } from '@microsoft/agents-bot-hosting'
 import {
+  teams,
   ActionTypes,
-  AppBasedLinkQuery,
+  // AppBasedLinkQuery,
   Attachment,
   CardAction,
-  CardFactory,
-  CardImage,
-  HeroCard,
+  cards,
   MessageFactory,
-  MessagingExtensionAttachment,
+  // MessagingExtensionAttachment,
   MessagingExtensionQuery,
-  MessagingExtensionResponse,
-  TaskModuleAction,
-  TaskModuleRequest,
-  TaskModuleResponse,
-  TaskModuleTaskInfo,
-  TeamsActivityHandler,
-  TeamsInfo,
-  ThumbnailCard,
+  // MessagingExtensionResponse,
+  // TaskModuleAction,
+  // TaskModuleRequest,
+  // TaskModuleResponse,
+  // TaskModuleTaskInfo,
+  // TeamsActivityHandler,
+  // TeamsInfo,
   TurnContext
 } from '@microsoft/agents-bot-hosting'
 import { TaskModuleIds } from './models/taskModuleIds'
@@ -29,11 +32,23 @@ import { TaskModuleResponseFactory } from './models/taskModuleResponseFactory'
 import { AdaptiveCardTaskFetchValue } from './models/adaptiveCardTaskFetchValue'
 import { CardTaskFetchValue } from './models/cardTaskFetchValue'
 import * as AdaptiveCards from 'adaptivecards'
+import { AppBasedLinkQuery, MessagingExtensionAttachment, MessagingExtensionResponse, TaskModuleAction, TaskModuleRequest, TaskModuleResponse, TaskModuleTaskInfo }
+  from '@microsoft/agents-bot-hosting/dist/src/teams'
+// import {
+//   AppBasedLinkQuery,
+//   MessagingExtensionAttachment, MessagingExtensionResponse, TaskModuleAction, TaskModuleRequest, TaskModuleResponse, TaskModuleTaskInfo
+// }
+//   from '@microsoft/agents-bot-hosting'
 const adaptiveCardResource = require('../cards/AdaptiveCard.json')
 const restaurantCardResource = require('../cards/RestaurantCard.json')
 
+const CardFactory = cards.CardFactory
+type CardImage = cards.CardImage
+type HeroCard = cards.HeroCard
+type ThumbnailCard = cards.ThumbnailCard
+
 const baseUrl = process.env.BASE_URL?.endsWith('/') ? process.env.BASE_URL : process.env.BASE_URL + '/'
-export class TeamsMultiFeatureBot extends TeamsActivityHandler {
+export class TeamsMultiFeatureBot extends teams.TeamsActivityHandler {
   constructor () {
     super()
     this.onMessage(async (context, next) => {
@@ -41,11 +56,11 @@ export class TeamsMultiFeatureBot extends TeamsActivityHandler {
         const reply = MessageFactory.attachment(TeamsMultiFeatureBot.getTaskModuleHeroCardOptions())
         await context.sendActivity(reply)
       } else if (context.activity.text?.indexOf('teamsinfo')! > 0) {
-        const channels = await TeamsInfo.getTeamChannels(context)
+        const channels = await teams.TeamsInfo.getTeamChannels(context)
         const msg1 = `Meeting Participant: ${JSON.stringify(channels)}}`
         await context.sendActivity(MessageFactory.text(msg1))
 
-        const teamDetails = await TeamsInfo.getTeamDetails(context)
+        const teamDetails = await teams.TeamsInfo.getTeamDetails(context)
         const msg2 = `Team Details: ${JSON.stringify(teamDetails)}`
         await context.sendActivity(MessageFactory.text(msg2))
       } else {

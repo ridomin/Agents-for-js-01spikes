@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { MemoryStorage } from '../../../src'
+import { MemoryStorage } from '../../../src/storage/memoryStorage'
 import { describe, it, beforeEach } from 'node:test'
 
 describe('MemoryStorage', () => {

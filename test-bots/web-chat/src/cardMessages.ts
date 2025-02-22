@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 
 import { ActionTypes, Activity, ActivityTypes, Attachment } from '@microsoft/agents-bot-activity'
-import { CardFactory, TurnContext } from '@microsoft/agents-bot-hosting'
+import { cards, TurnContext } from '@microsoft/agents-bot-hosting'
+
+const CardFactory = cards.CardFactory
 
 export class CardMessages {
   static async sendIntroCard (context: TurnContext): Promise<void> {
@@ -132,51 +134,51 @@ export class CardMessages {
     throw new Error('NotImplemented')
   }
 
-  static async sendO365ConnectorCard (context: TurnContext): Promise<void> {
-    const card = CardFactory.o365ConnectorCard({
-      title: 'card title',
-      text: 'card text',
-      summary: 'O365 card summary',
-      themeColor: '#E67A9E',
-      sections: [
-        {
-          text: 'This is some <strong>bold</strong> text'
-        },
-        {
-          text: 'This is some <em>italic</em> text'
-        },
-        {
-          text: 'This is some <strike>strikethrough</strike> text'
-        },
-        {
-          text: '<h1>Header 1</h1>\r<h2>Header 2</h2>\r <h3>Header 3</h3>'
-        },
-        {
-          text: 'bullet list <ul><li>text</li><li>text</li></ul>'
-        },
-        {
-          text: 'ordered list <ol><li>text</li><li>text</li></ol>'
-        },
-        {
-          text: 'hyperlink <a href="https://www.bing.com/">Bing</a>'
-        },
-        {
-          text: 'embedded image <img src="https://aka.ms/Fo983c" alt="Duck on a rock"></img>'
-        },
-        {
-          text: 'preformatted text <pre>text</pre>'
-        },
-        {
-          text: 'Paragraphs <p>Line a</p><p>Line b</p>'
-        },
-        {
-          text: '<blockquote>Blockquote text</blockquote>'
-        }
-      ]
-    })
+  // static async sendO365ConnectorCard (context: TurnContext): Promise<void> {
+  //   const card = CardFactory.o365ConnectorCard({
+  //     title: 'card title',
+  //     text: 'card text',
+  //     summary: 'O365 card summary',
+  //     themeColor: '#E67A9E',
+  //     sections: [
+  //       {
+  //         text: 'This is some <strong>bold</strong> text'
+  //       },
+  //       {
+  //         text: 'This is some <em>italic</em> text'
+  //       },
+  //       {
+  //         text: 'This is some <strike>strikethrough</strike> text'
+  //       },
+  //       {
+  //         text: '<h1>Header 1</h1>\r<h2>Header 2</h2>\r <h3>Header 3</h3>'
+  //       },
+  //       {
+  //         text: 'bullet list <ul><li>text</li><li>text</li></ul>'
+  //       },
+  //       {
+  //         text: 'ordered list <ol><li>text</li><li>text</li></ol>'
+  //       },
+  //       {
+  //         text: 'hyperlink <a href="https://www.bing.com/">Bing</a>'
+  //       },
+  //       {
+  //         text: 'embedded image <img src="https://aka.ms/Fo983c" alt="Duck on a rock"></img>'
+  //       },
+  //       {
+  //         text: 'preformatted text <pre>text</pre>'
+  //       },
+  //       {
+  //         text: 'Paragraphs <p>Line a</p><p>Line b</p>'
+  //       },
+  //       {
+  //         text: '<blockquote>Blockquote text</blockquote>'
+  //       }
+  //     ]
+  //   })
 
-    await CardMessages.sendActivity(context, card)
-  }
+  //   await CardMessages.sendActivity(context, card)
+  // }
 
   static async sendSigninCard (context: TurnContext) {
     // TODO still pending

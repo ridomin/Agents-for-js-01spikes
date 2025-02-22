@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TaskModuleResponse, TaskModuleTaskInfo } from '@microsoft/agents-bot-hosting'
+import { teams } from '@microsoft/agents-bot-hosting'
+
+type TaskModuleTaskInfo = teams.TaskModuleTaskInfo
+type TaskModuleResponse = teams.TaskModuleResponse
 
 export class TaskModuleResponseFactory {
   static toTaskModuleResponse (taskInfo: TaskModuleTaskInfo): TaskModuleResponse {

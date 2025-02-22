@@ -6,13 +6,14 @@
 export * from './auth/'
 export { authorizeJWT } from './auth/jwt-middleware'
 
-export * from './cards'
+export * as cards from './cardFactory'
+
 export * from './connector-client'
 export * from './invoke'
 export * from './oauth'
-export * from './state'
-export * from './storage'
-export * from './teams'
+export * as state from './state'
+export * as storage from './storage'
+export * as teams from './teams'
 export * from './transcript'
 
 export * from './activityHandler'
