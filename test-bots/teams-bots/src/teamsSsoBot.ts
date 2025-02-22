@@ -1,11 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ActivityHandler, CardFactory, MessageFactory, TeamsOAuthFlow, TurnContext, UserState } from '@microsoft/agents-bot-hosting'
+import { ActivityHandler, cards, MessageFactory, TeamsOAuthFlow, TurnContext, state } from '@microsoft/agents-bot-hosting'
 
 import { Template } from 'adaptivecards-templating'
 import * as userTemplate from '../cards/UserProfileCard.json'
 import { getUserInfo } from './userGraphClient'
+
+type UserState = state.UserState
+
+const CardFactory = cards.CardFactory
 
 export class TeamsSsoBot extends ActivityHandler {
   teamsOAuthFlow: TeamsOAuthFlow

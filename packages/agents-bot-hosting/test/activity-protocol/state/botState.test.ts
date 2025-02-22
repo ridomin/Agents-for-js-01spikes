@@ -1,13 +1,15 @@
 import { test, describe, beforeEach } from 'node:test'
 import assert from 'node:assert'
-import { TurnContext, MemoryStorage } from '../../../src'
+import { TurnContext } from '../../../src'
 import { BotState } from '../../../src/state/botState'
-import { StoreItem } from '../../../src/storage/storage'
+import * as storage from '../../../src/storage'
+
+const MemoryStorage = storage.MemoryStorage
 
 describe('BotState', () => {
   let botState: BotState
   let mockContext: TurnContext
-  let storage: MemoryStorage
+  let storage: storage.MemoryStorage
 
   const storageKeyFactory = (): string => 'mockKey'
 
@@ -22,7 +24,7 @@ describe('BotState', () => {
 
   describe('load', () => {
     test('loads state from storage if not cached', async () => {
-      const initialData: StoreItem = { mockKey: { test: 'value', eTag: '1' } }
+      const initialData: storage.StoreItem = { mockKey: { test: 'value', eTag: '1' } }
       await storage.write(initialData)
 
       const state = await botState.load(mockContext)
@@ -72,7 +74,7 @@ describe('BotState', () => {
 
   describe('delete', () => {
     test('deletes state from storage and turnState', async () => {
-      const initialData: StoreItem = { mockKey: { test: 'value' } }
+      const initialData: storage.StoreItem = { mockKey: { test: 'value' } }
       await storage.write(initialData)
 
       mockContext.turnState.set(botState['stateKey'], { state: { test: 'value' }, hash: 'hash' })

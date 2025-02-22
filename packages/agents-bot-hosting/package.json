@@ -37,11 +37,15 @@
     "src"
   ],
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "import": "./dist/src/index.js",
-      "require": "./dist/src/index.js"
-    },
-    "./package.json": "./package.json"
+      "require": "./dist/src/index.js",
+      "teams" : {
+        "import": "./dist/src/teams/index.js",
+        "require": "./dist/src/teams/index.js"
+      }
+    }
   },
   "engines": {
     "node": ">=18.0.0"

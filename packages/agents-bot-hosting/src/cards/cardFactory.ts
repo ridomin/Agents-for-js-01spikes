@@ -94,6 +94,31 @@ export interface VideoCard {
   duration: string
   value: any
 }
+export interface Fact {
+  key: string;
+  value: string;
+}
+
+export interface ReceiptItem {
+  title: string
+  subtitle?: string
+  text?: string
+  image: CardImage
+  price: string
+  quantity: number
+  tap?: CardAction
+}
+
+export interface ReceiptCard {
+  title: string
+  facts: Fact[]
+  items: ReceiptItem[]
+  tap?: CardAction
+  total: string
+  tax: string
+  vat?: string
+  buttons: CardAction[]
+}
 
 export class CardFactory {
   static contentTypes: any = {
@@ -137,9 +162,9 @@ export class CardFactory {
     return a
   }
 
-  // static receiptCard (card: ReceiptCard): Attachment {
-  //   return { contentType: CardFactory.contentTypes.receiptCard, content: card }
-  // }
+  static receiptCard (card: ReceiptCard): Attachment {
+    return { contentType: CardFactory.contentTypes.receiptCard, content: card }
+  }
 
   // static o365ConnectorCard (card: O365ConnectorCard): Attachment {
   //   return { contentType: CardFactory.contentTypes.o365ConnectorCard, content: card }

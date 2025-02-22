@@ -46,7 +46,7 @@ export class CardFactoryBot extends ActivityHandler {
             await CardMessages.sendOauthCard(context)
             break
           case '7':
-            await CardMessages.sendO365ConnectorCard(context)
+            // await CardMessages.sendO365ConnectorCard(context)
             break
           case '8':
             await CardMessages.sendSigninCard(context)
