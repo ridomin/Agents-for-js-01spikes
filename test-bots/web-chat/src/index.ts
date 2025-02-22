@@ -4,7 +4,7 @@
 import express, { Response } from 'express'
 import rateLimit from 'express-rate-limit'
 
-import { Request, CloudAdapter, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv, MemoryStorage, ConversationState, UserState } from '@microsoft/agents-bot-hosting'
+import { Request, CloudAdapter, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv, state, storage } from '@microsoft/agents-bot-hosting'
 import { ConversationReference } from '@microsoft/agents-bot-activity'
 
 import { AdaptiveCardBot } from './adaptiveCardsBot'
@@ -12,6 +12,9 @@ import { CardFactoryBot } from './cardFactoryBot'
 import { MultiFeatureBot } from './multiFeatureBot'
 import { StateManagementBot } from './stateBot'
 import { WebChatSsoBot } from './webChatSsoBot'
+
+const { UserState, ConversationState } = state
+const { MemoryStorage } = storage
 
 const authConfig: AuthConfiguration = loadAuthConfigFromEnv()
 const conversationReferences: { [key: string]: ConversationReference } = {}

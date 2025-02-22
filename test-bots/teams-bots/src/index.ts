@@ -4,12 +4,15 @@
 import express, { Response } from 'express'
 import rateLimit from 'express-rate-limit'
 
-import { Request, CloudAdapter, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv, UserState, MemoryStorage } from '@microsoft/agents-bot-hosting'
+import { Request, CloudAdapter, authorizeJWT, AuthConfiguration, loadAuthConfigFromEnv, state, storage } from '@microsoft/agents-bot-hosting'
 
 import { TeamsJsBot } from './teamsJsBot'
 import { TeamsSsoBot } from './teamsSsoBot'
 import { TeamsMultiFeatureBot } from './teamsMultiFeatureBot'
 import path from 'path'
+
+const MemoryStorage = storage.MemoryStorage
+const UserState = state.UserState
 
 const authConfig: AuthConfiguration = loadAuthConfigFromEnv()
 

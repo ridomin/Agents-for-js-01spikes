@@ -6,12 +6,16 @@ import {
   ConversationParameters,
   MeetingNotification,
   MessageFactory,
-  TeamsActivityHandler,
-  TeamsInfo,
+  // TeamsActivityHandler,
+  // TeamsInfo,
   TeamsMember,
-  TurnContext
+  TurnContext,
+  teams
 }
   from '@microsoft/agents-bot-hosting'
+
+const TeamsActivityHandler = teams.TeamsActivityHandler
+const TeamsInfo = teams.TeamsInfo
 
 export class TeamsJsBot extends TeamsActivityHandler {
   constructor () {
