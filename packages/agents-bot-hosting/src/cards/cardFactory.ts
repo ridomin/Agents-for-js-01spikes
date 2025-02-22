@@ -4,17 +4,96 @@
  */
 
 import { ActionTypes, Attachment, CardAction } from '@microsoft/agents-bot-activity'
-import { MediaUrl } from './mediaUrl'
-import { AnimationCard } from './animationCard'
-import { AudioCard } from './audioCard'
-import { HeroCard } from './heroCard'
-import { ReceiptCard } from './receiptCard'
-import { O365ConnectorCard } from './o365ConnectorCard'
-import { ThumbnailCard } from './thumbnailCard'
-import { VideoCard } from './videoCard'
-import { CardImage } from './cardImage'
+// import { MediaUrl } from './mediaUrl'
+// import { AnimationCard } from './animationCard'
+// import { AudioCard } from './audioCard'
+// import { HeroCard } from './heroCard'
+// import { ReceiptCard } from './receiptCard'
+// import { O365ConnectorCard } from './o365ConnectorCard'
+// import { ThumbnailCard } from './thumbnailCard'
+// import { VideoCard } from './videoCard'
+// import { CardImage } from './cardImage'
 import { OAuthCard } from '../oauth/oauthCard'
 import { SigningResource } from '../oauth/signingResource'
+
+export interface MediaUrl {
+  url: string
+  profile?: string
+}
+
+export interface ThumbnailUrl {
+  url: string;
+  alt?: string;
+}
+
+export interface AnimationCard {
+  title: string
+  subtitle: string
+  text: string
+  image: ThumbnailUrl
+  media: MediaUrl[]
+  buttons: CardAction[]
+  shareable: boolean
+  autoloop: boolean
+  autostart: boolean
+  aspect: string
+  duration: string
+  value: any
+}
+
+export interface AudioCard {
+  title: string
+  subtitle: string
+  text: string
+  image: ThumbnailUrl
+  media: MediaUrl[]
+  buttons: CardAction[]
+  shareable: boolean
+  autoloop: boolean
+  autostart: boolean
+  aspect: string
+  duration: string
+  value: any
+}
+
+export interface HeroCard {
+  title: string
+  subtitle: string
+  text: string
+  images: CardImage[]
+  buttons: CardAction[]
+  tap: CardAction
+}
+
+export interface CardImage {
+  url: string
+  alt?: string
+  tap?: CardAction
+}
+
+export interface ThumbnailCard {
+  title: string
+  subtitle: string
+  text: string
+  images: CardImage[]
+  buttons: CardAction[]
+  tap: CardAction
+}
+
+export interface VideoCard {
+  title: string
+  subtitle: string
+  text: string
+  image: ThumbnailUrl
+  media: MediaUrl[]
+  buttons: CardAction[]
+  shareable: boolean
+  autoloop: boolean
+  autostart: boolean
+  aspect: string
+  duration: string
+  value: any
+}
 
 export class CardFactory {
   static contentTypes: any = {
@@ -58,13 +137,13 @@ export class CardFactory {
     return a
   }
 
-  static receiptCard (card: ReceiptCard): Attachment {
-    return { contentType: CardFactory.contentTypes.receiptCard, content: card }
-  }
+  // static receiptCard (card: ReceiptCard): Attachment {
+  //   return { contentType: CardFactory.contentTypes.receiptCard, content: card }
+  // }
 
-  static o365ConnectorCard (card: O365ConnectorCard): Attachment {
-    return { contentType: CardFactory.contentTypes.o365ConnectorCard, content: card }
-  }
+  // static o365ConnectorCard (card: O365ConnectorCard): Attachment {
+  //   return { contentType: CardFactory.contentTypes.o365ConnectorCard, content: card }
+  // }
 
   static thumbnailCard (
     title: string,
