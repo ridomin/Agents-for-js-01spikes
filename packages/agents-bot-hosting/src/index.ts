@@ -6,7 +6,7 @@
 export * from './auth/'
 export { authorizeJWT } from './auth/jwt-middleware'
 
-export * as cards from './cards/cardFactory'
+export * as cards from './cardFactory'
 
 export * from './connector-client'
 export * from './invoke'

@@ -4,7 +4,7 @@
 import { Attachment } from '@microsoft/agents-bot-activity'
 import { UserTokenClient } from './userTokenClient'
 import { CloudAdapter } from '../cloudAdapter'
-import { CardFactory } from '../cards/cardFactory'
+import { CardFactory } from '../cardFactory'
 import { BotStatePropertyAccessor } from '../state/botStatePropertyAccesor'
 import { UserState } from '../state/userState'
 import { TurnContext } from '../turnContext'

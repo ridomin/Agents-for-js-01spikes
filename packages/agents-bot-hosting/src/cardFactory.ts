@@ -13,8 +13,8 @@ import { ActionTypes, Attachment, CardAction } from '@microsoft/agents-bot-activ
 // import { ThumbnailCard } from './thumbnailCard'
 // import { VideoCard } from './videoCard'
 // import { CardImage } from './cardImage'
-import { OAuthCard } from '../oauth/oauthCard'
-import { SigningResource } from '../oauth/signingResource'
+import { OAuthCard } from './oauth/oauthCard'
+import { SigningResource } from './oauth/signingResource'
 
 export interface MediaUrl {
   url: string
